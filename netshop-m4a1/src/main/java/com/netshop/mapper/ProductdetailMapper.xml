@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.ProductdetailMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Productdetail">
+    <result column="productid" jdbcType="INTEGER" property="productid" />
+    <result column="otherpicurls" jdbcType="VARCHAR" property="otherpicurls" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.netshop.pojo.Productdetail">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <insert id="insert" parameterType="com.netshop.pojo.Productdetail">
+    insert into productdetail (productid, otherpicurls, description
+      )
+    values (#{productid,jdbcType=INTEGER}, #{otherpicurls,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Productdetail">
+    insert into productdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="otherpicurls != null">
+        otherpicurls,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="otherpicurls != null">
+        #{otherpicurls,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

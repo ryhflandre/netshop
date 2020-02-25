@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Address">
+    <id column="addressid" jdbcType="INTEGER" property="addressid" />
+    <result column="customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="receivername" jdbcType="VARCHAR" property="receivername" />
+    <result column="receivermobile" jdbcType="VARCHAR" property="receivermobile" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    addressid, customerid, receivername, receivermobile, content, tag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from address
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.netshop.pojo.Address">
+    insert into address (addressid, customerid, receivername, 
+      receivermobile, content, tag
+      )
+    values (#{addressid,jdbcType=INTEGER}, #{customerid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
+      #{receivermobile,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        addressid,
+      </if>
+      <if test="customerid != null">
+        customerid,
+      </if>
+      <if test="receivername != null">
+        receivername,
+      </if>
+      <if test="receivermobile != null">
+        receivermobile,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="receivername != null">
+        #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="receivermobile != null">
+        #{receivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.netshop.pojo.Address">
+    update address
+    <set>
+      <if test="customerid != null">
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="receivername != null">
+        receivername = #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="receivermobile != null">
+        receivermobile = #{receivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.netshop.pojo.Address">
+    update address
+    set customerid = #{customerid,jdbcType=INTEGER},
+      receivername = #{receivername,jdbcType=VARCHAR},
+      receivermobile = #{receivermobile,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR}
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </update>
+</mapper>

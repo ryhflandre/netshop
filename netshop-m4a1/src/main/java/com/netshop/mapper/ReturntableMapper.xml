@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.ReturntableMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Returntable">
+    <id column="returnid" jdbcType="INTEGER" property="returnid" />
+    <result column="orderid" jdbcType="BIGINT" property="orderid" />
+    <result column="ordertime" jdbcType="TIMESTAMP" property="ordertime" />
+    <result column="customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="customername" jdbcType="VARCHAR" property="customername" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="returnaction" jdbcType="TINYINT" property="returnaction" />
+    <result column="productcode" jdbcType="VARCHAR" property="productcode" />
+    <result column="productname" jdbcType="VARCHAR" property="productname" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="reason" jdbcType="TINYINT" property="reason" />
+    <result column="opened" jdbcType="BIT" property="opened" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    returnid, orderid, ordertime, customerid, customername, mobile, email, status, returnaction, 
+    productcode, productname, quantity, reason, opened, comment, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from returntable
+    where returnid = #{returnid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from returntable
+    where returnid = #{returnid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.netshop.pojo.Returntable">
+    insert into returntable (returnid, orderid, ordertime, 
+      customerid, customername, mobile, 
+      email, status, returnaction, 
+      productcode, productname, quantity, 
+      reason, opened, comment, 
+      createtime, updatetime)
+    values (#{returnid,jdbcType=INTEGER}, #{orderid,jdbcType=BIGINT}, #{ordertime,jdbcType=TIMESTAMP}, 
+      #{customerid,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{returnaction,jdbcType=TINYINT}, 
+      #{productcode,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, 
+      #{reason,jdbcType=TINYINT}, #{opened,jdbcType=BIT}, #{comment,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Returntable">
+    insert into returntable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="returnid != null">
+        returnid,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="ordertime != null">
+        ordertime,
+      </if>
+      <if test="customerid != null">
+        customerid,
+      </if>
+      <if test="customername != null">
+        customername,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="returnaction != null">
+        returnaction,
+      </if>
+      <if test="productcode != null">
+        productcode,
+      </if>
+      <if test="productname != null">
+        productname,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="opened != null">
+        opened,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="returnid != null">
+        #{returnid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="ordertime != null">
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="returnaction != null">
+        #{returnaction,jdbcType=TINYINT},
+      </if>
+      <if test="productcode != null">
+        #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null">
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=TINYINT},
+      </if>
+      <if test="opened != null">
+        #{opened,jdbcType=BIT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.netshop.pojo.Returntable">
+    update returntable
+    <set>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="ordertime != null">
+        ordertime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerid != null">
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="customername != null">
+        customername = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="returnaction != null">
+        returnaction = #{returnaction,jdbcType=TINYINT},
+      </if>
+      <if test="productcode != null">
+        productcode = #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null">
+        productname = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=TINYINT},
+      </if>
+      <if test="opened != null">
+        opened = #{opened,jdbcType=BIT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where returnid = #{returnid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.netshop.pojo.Returntable">
+    update returntable
+    set orderid = #{orderid,jdbcType=BIGINT},
+      ordertime = #{ordertime,jdbcType=TIMESTAMP},
+      customerid = #{customerid,jdbcType=INTEGER},
+      customername = #{customername,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      returnaction = #{returnaction,jdbcType=TINYINT},
+      productcode = #{productcode,jdbcType=VARCHAR},
+      productname = #{productname,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=TINYINT},
+      opened = #{opened,jdbcType=BIT},
+      comment = #{comment,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where returnid = #{returnid,jdbcType=INTEGER}
+  </update>
+</mapper>

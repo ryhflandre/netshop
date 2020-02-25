@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.OrderhistoryMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Orderhistory">
+    <id column="orderhistoryid" jdbcType="BIGINT" property="orderhistoryid" />
+    <result column="orderid" jdbcType="BIGINT" property="orderid" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="orderstatus" jdbcType="TINYINT" property="orderstatus" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="customernotified" jdbcType="BIT" property="customernotified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderhistoryid, orderid, time, orderstatus, comment, customernotified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderhistory
+    where orderhistoryid = #{orderhistoryid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from orderhistory
+    where orderhistoryid = #{orderhistoryid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.netshop.pojo.Orderhistory">
+    insert into orderhistory (orderhistoryid, orderid, time, 
+      orderstatus, comment, customernotified
+      )
+    values (#{orderhistoryid,jdbcType=BIGINT}, #{orderid,jdbcType=BIGINT}, #{time,jdbcType=TIMESTAMP}, 
+      #{orderstatus,jdbcType=TINYINT}, #{comment,jdbcType=VARCHAR}, #{customernotified,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Orderhistory">
+    insert into orderhistory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderhistoryid != null">
+        orderhistoryid,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="orderstatus != null">
+        orderstatus,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="customernotified != null">
+        customernotified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderhistoryid != null">
+        #{orderhistoryid,jdbcType=BIGINT},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderstatus != null">
+        #{orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="customernotified != null">
+        #{customernotified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.netshop.pojo.Orderhistory">
+    update orderhistory
+    <set>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderstatus != null">
+        orderstatus = #{orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="customernotified != null">
+        customernotified = #{customernotified,jdbcType=BIT},
+      </if>
+    </set>
+    where orderhistoryid = #{orderhistoryid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.netshop.pojo.Orderhistory">
+    update orderhistory
+    set orderid = #{orderid,jdbcType=BIGINT},
+      time = #{time,jdbcType=TIMESTAMP},
+      orderstatus = #{orderstatus,jdbcType=TINYINT},
+      comment = #{comment,jdbcType=VARCHAR},
+      customernotified = #{customernotified,jdbcType=BIT}
+    where orderhistoryid = #{orderhistoryid,jdbcType=BIGINT}
+  </update>
+</mapper>

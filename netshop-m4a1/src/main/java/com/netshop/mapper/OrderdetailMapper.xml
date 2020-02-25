@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.OrderdetailMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Orderdetail">
+    <result column="orderid" jdbcType="BIGINT" property="orderid" />
+    <result column="shipmethod" jdbcType="SMALLINT" property="shipmethod" />
+    <result column="shipaddress" jdbcType="VARCHAR" property="shipaddress" />
+    <result column="shipprice" jdbcType="DOUBLE" property="shipprice" />
+    <result column="paymethod" jdbcType="SMALLINT" property="paymethod" />
+    <result column="invoiceaddress" jdbcType="VARCHAR" property="invoiceaddress" />
+    <result column="invoiceprice" jdbcType="DOUBLE" property="invoiceprice" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="productid" jdbcType="INTEGER" property="productid" />
+    <result column="productcode" jdbcType="VARCHAR" property="productcode" />
+    <result column="productname" jdbcType="VARCHAR" property="productname" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="unitprice" jdbcType="DOUBLE" property="unitprice" />
+    <result column="unitrewordpoints" jdbcType="INTEGER" property="unitrewordpoints" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.netshop.pojo.Orderdetail">
+    <result column="orderproducts" jdbcType="LONGVARCHAR" property="orderproducts" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    orderproducts
+  </sql>
+  <insert id="insert" parameterType="com.netshop.pojo.Orderdetail">
+    insert into orderdetail (orderid, shipmethod, shipaddress, 
+      shipprice, paymethod, invoiceaddress, 
+      invoiceprice, comment, productid, 
+      productcode, productname, quantity, 
+      unitprice, unitrewordpoints, orderproducts
+      )
+    values (#{orderid,jdbcType=BIGINT}, #{shipmethod,jdbcType=SMALLINT}, #{shipaddress,jdbcType=VARCHAR}, 
+      #{shipprice,jdbcType=DOUBLE}, #{paymethod,jdbcType=SMALLINT}, #{invoiceaddress,jdbcType=VARCHAR}, 
+      #{invoiceprice,jdbcType=DOUBLE}, #{comment,jdbcType=VARCHAR}, #{productid,jdbcType=INTEGER}, 
+      #{productcode,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, 
+      #{unitprice,jdbcType=DOUBLE}, #{unitrewordpoints,jdbcType=INTEGER}, #{orderproducts,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Orderdetail">
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="shipmethod != null">
+        shipmethod,
+      </if>
+      <if test="shipaddress != null">
+        shipaddress,
+      </if>
+      <if test="shipprice != null">
+        shipprice,
+      </if>
+      <if test="paymethod != null">
+        paymethod,
+      </if>
+      <if test="invoiceaddress != null">
+        invoiceaddress,
+      </if>
+      <if test="invoiceprice != null">
+        invoiceprice,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="productcode != null">
+        productcode,
+      </if>
+      <if test="productname != null">
+        productname,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="unitprice != null">
+        unitprice,
+      </if>
+      <if test="unitrewordpoints != null">
+        unitrewordpoints,
+      </if>
+      <if test="orderproducts != null">
+        orderproducts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="shipmethod != null">
+        #{shipmethod,jdbcType=SMALLINT},
+      </if>
+      <if test="shipaddress != null">
+        #{shipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shipprice != null">
+        #{shipprice,jdbcType=DOUBLE},
+      </if>
+      <if test="paymethod != null">
+        #{paymethod,jdbcType=SMALLINT},
+      </if>
+      <if test="invoiceaddress != null">
+        #{invoiceaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceprice != null">
+        #{invoiceprice,jdbcType=DOUBLE},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productcode != null">
+        #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null">
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="unitprice != null">
+        #{unitprice,jdbcType=DOUBLE},
+      </if>
+      <if test="unitrewordpoints != null">
+        #{unitrewordpoints,jdbcType=INTEGER},
+      </if>
+      <if test="orderproducts != null">
+        #{orderproducts,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

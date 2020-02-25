@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Product">
+    <id column="productid" jdbcType="INTEGER" property="productid" />
+    <result column="productcode" jdbcType="VARCHAR" property="productcode" />
+    <result column="productname" jdbcType="VARCHAR" property="productname" />
+    <result column="productabstract" jdbcType="VARCHAR" property="productabstract" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="discount" jdbcType="DOUBLE" property="discount" />
+    <result column="stockquantity" jdbcType="INTEGER" property="stockquantity" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="mainpicurl" jdbcType="VARCHAR" property="mainpicurl" />
+    <result column="rewordpoints" jdbcType="INTEGER" property="rewordpoints" />
+    <result column="sortorder" jdbcType="INTEGER" property="sortorder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productid, productcode, productname, productabstract, price, discount, stockquantity, 
+    status, mainpicurl, rewordpoints, sortorder
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where productid = #{productid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where productid = #{productid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.netshop.pojo.Product">
+    insert into product (productid, productcode, productname, 
+      productabstract, price, discount, 
+      stockquantity, status, mainpicurl, 
+      rewordpoints, sortorder)
+    values (#{productid,jdbcType=INTEGER}, #{productcode,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, 
+      #{productabstract,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{discount,jdbcType=DOUBLE}, 
+      #{stockquantity,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{mainpicurl,jdbcType=VARCHAR}, 
+      #{rewordpoints,jdbcType=INTEGER}, #{sortorder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="productcode != null">
+        productcode,
+      </if>
+      <if test="productname != null">
+        productname,
+      </if>
+      <if test="productabstract != null">
+        productabstract,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="stockquantity != null">
+        stockquantity,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="mainpicurl != null">
+        mainpicurl,
+      </if>
+      <if test="rewordpoints != null">
+        rewordpoints,
+      </if>
+      <if test="sortorder != null">
+        sortorder,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productcode != null">
+        #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null">
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productabstract != null">
+        #{productabstract,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="stockquantity != null">
+        #{stockquantity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="mainpicurl != null">
+        #{mainpicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="rewordpoints != null">
+        #{rewordpoints,jdbcType=INTEGER},
+      </if>
+      <if test="sortorder != null">
+        #{sortorder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.netshop.pojo.Product">
+    update product
+    <set>
+      <if test="productcode != null">
+        productcode = #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null">
+        productname = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productabstract != null">
+        productabstract = #{productabstract,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="stockquantity != null">
+        stockquantity = #{stockquantity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="mainpicurl != null">
+        mainpicurl = #{mainpicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="rewordpoints != null">
+        rewordpoints = #{rewordpoints,jdbcType=INTEGER},
+      </if>
+      <if test="sortorder != null">
+        sortorder = #{sortorder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where productid = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.netshop.pojo.Product">
+    update product
+    set productcode = #{productcode,jdbcType=VARCHAR},
+      productname = #{productname,jdbcType=VARCHAR},
+      productabstract = #{productabstract,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      discount = #{discount,jdbcType=DOUBLE},
+      stockquantity = #{stockquantity,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      mainpicurl = #{mainpicurl,jdbcType=VARCHAR},
+      rewordpoints = #{rewordpoints,jdbcType=INTEGER},
+      sortorder = #{sortorder,jdbcType=INTEGER}
+    where productid = #{productid,jdbcType=INTEGER}
+  </update>
+</mapper>

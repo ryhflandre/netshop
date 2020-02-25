@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netshop.mapper.OrdertableMapper">
+  <resultMap id="BaseResultMap" type="com.netshop.pojo.Ordertable">
+    <id column="orderid" jdbcType="BIGINT" property="orderid" />
+    <result column="customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="totalprice" jdbcType="DOUBLE" property="totalprice" />
+    <result column="rewordpoints" jdbcType="INTEGER" property="rewordpoints" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderid, customerid, status, totalprice, rewordpoints, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ordertable
+    where orderid = #{orderid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ordertable
+    where orderid = #{orderid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.netshop.pojo.Ordertable">
+    insert into ordertable (orderid, customerid, status, 
+      totalprice, rewordpoints, createtime, 
+      updatetime)
+    values (#{orderid,jdbcType=BIGINT}, #{customerid,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{totalprice,jdbcType=DOUBLE}, #{rewordpoints,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.netshop.pojo.Ordertable">
+    insert into ordertable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="customerid != null">
+        customerid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="totalprice != null">
+        totalprice,
+      </if>
+      <if test="rewordpoints != null">
+        rewordpoints,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="rewordpoints != null">
+        #{rewordpoints,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.netshop.pojo.Ordertable">
+    update ordertable
+    <set>
+      <if test="customerid != null">
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="totalprice != null">
+        totalprice = #{totalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="rewordpoints != null">
+        rewordpoints = #{rewordpoints,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.netshop.pojo.Ordertable">
+    update ordertable
+    set customerid = #{customerid,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      totalprice = #{totalprice,jdbcType=DOUBLE},
+      rewordpoints = #{rewordpoints,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where orderid = #{orderid,jdbcType=BIGINT}
+  </update>
+</mapper>
