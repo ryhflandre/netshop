@@ -1,6 +1,7 @@
 package com.netshop.controller;
 
 import com.netshop.pojo.Administrator;
+import com.netshop.pojo.Customer;
 import com.netshop.pojo.Ordertable;
 import com.netshop.service.*;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -44,27 +46,31 @@ public class AdminController {
     private ReturntableService returntableService;
 
 
-    @PostMapping("/store/list")
-    public String storeList(Model model, @RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "10") Integer size){
+    @PostMapping("/admin/list")
+    public String adminList(Model model, @RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "10") Integer size){
+        List<Administrator> administrators =  administratorService.list(page,size);
+        List<Customer> customers = customerService.list();
+
+
         return null;
     }
 
-    @PostMapping("/store/add")
+    @PostMapping("/admin/add")
     @ResponseBody
-    public boolean storeAdd(@RequestBody Ordertable ordertable){
+    public boolean adminAdd(@RequestBody Administrator administrator){
         return false;
     }
 
-    @PostMapping("/store/del")
+    @PostMapping("/admin/del")
     @ResponseBody
-    public boolean storeDel(@RequestBody Integer orderid){
+    public boolean adminDel(@RequestBody Integer adminid){
         return false;
     }
 
 
-    @PostMapping("/store/update")
+    @PostMapping("/admin/update")
     @ResponseBody
-    public boolean storeUpdate(@RequestBody Ordertable ordertable){
+    public boolean adminUpdate(@RequestBody Administrator administrator){
         return false;
     }
 
