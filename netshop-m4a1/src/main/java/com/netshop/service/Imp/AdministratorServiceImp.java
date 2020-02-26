@@ -18,4 +18,19 @@ public class AdministratorServiceImp implements AdministratorService {
     public List<Administrator> list(Integer page, Integer size) {
         return administratorMapper.list(((page-1)*size),size);
     }
+
+    @Override
+    public void add(Administrator administrator) {
+        administratorMapper.insert(administrator);
+    }
+
+    @Override
+    public void del(Integer adminid) {
+        administratorMapper.deleteByPrimaryKey(adminid);
+    }
+
+    @Override
+    public void up(Administrator administrator) {
+        administratorMapper.updateByPrimaryKey(administrator);
+    }
 }

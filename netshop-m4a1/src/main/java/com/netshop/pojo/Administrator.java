@@ -83,4 +83,5 @@ public class Administrator implements Serializable {
     public void setAvatarurl(String avatarurl) {
         this.avatarurl = avatarurl == null ? null : avatarurl.trim();
     }
+
 }

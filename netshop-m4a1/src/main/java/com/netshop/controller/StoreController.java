@@ -1,5 +1,6 @@
 package com.netshop.controller;
 
+import com.netshop.pojo.Orderdetail;
 import com.netshop.pojo.Ordertable;
 import com.netshop.service.*;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 public class StoreController {
@@ -46,21 +48,24 @@ public class StoreController {
 
     @PostMapping("/store/list")
     public String storeList(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size){
+        List<Ordertable> ordertables = ordertableService.list(page,size);
 
-
-
-        return null;
+        model.addAttribute("order",ordertables);
+        return "list";
     }
 
     @PostMapping("/store/add")
     @ResponseBody
     public boolean storeAdd(@RequestBody Ordertable ordertable){
+        ordertableService.add(ordertable);
         return false;
     }
 
     @PostMapping("/store/del")
     @ResponseBody
-    public boolean storeDel(@RequestBody Integer orderid){
+    public boolean storeDel(@RequestBody Long orderid){
+        ordertableService.del(orderid);
+        orderdetailService.del(orderid);
         return false;
     }
 
@@ -68,12 +73,15 @@ public class StoreController {
     @PostMapping("/store/update")
     @ResponseBody
     public boolean storeUpdate(@RequestBody Ordertable ordertable){
+        ordertableService.up(ordertable);
+        Orderdetail orderdetail = new Orderdetail();
+        orderdetailService.up(orderdetail);
         return false;
     }
 
     @PostMapping("/upload")
     @ResponseBody
-    public String upload(@RequestBody MultipartFile file){
+    public String upload(@RequestBody MultipartFile file) {
         return null;
     }
 

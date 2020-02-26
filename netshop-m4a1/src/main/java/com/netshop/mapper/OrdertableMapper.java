@@ -2,6 +2,8 @@ package com.netshop.mapper;
 
 import com.netshop.pojo.Ordertable;
 
+import java.util.List;
+
 public interface OrdertableMapper {
     int deleteByPrimaryKey(Long orderid);
 
@@ -14,4 +16,6 @@ public interface OrdertableMapper {
     int updateByPrimaryKeySelective(Ordertable record);
 
     int updateByPrimaryKey(Ordertable record);
+
+    List<Ordertable> list(int i, Integer size);
 }

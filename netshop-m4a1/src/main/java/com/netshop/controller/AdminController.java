@@ -52,25 +52,30 @@ public class AdminController {
         List<Customer> customers = customerService.list();
 
 
-        return null;
+        model.addAttribute("admin",administrators);
+        model.addAttribute("customer",customers);
+        return "list";
     }
 
     @PostMapping("/admin/add")
     @ResponseBody
     public boolean adminAdd(@RequestBody Administrator administrator){
+        administratorService.add(administrator);
         return false;
     }
 
     @PostMapping("/admin/del")
     @ResponseBody
     public boolean adminDel(@RequestBody Integer adminid){
+        administratorService.del(adminid);
         return false;
     }
 
 
     @PostMapping("/admin/update")
     @ResponseBody
-    public boolean adminUpdate(@RequestBody Administrator administrator){
+    public boolean adminUpdate(@RequestBody Administrator administrator) {
+        administratorService.up(administrator);
         return false;
     }
 

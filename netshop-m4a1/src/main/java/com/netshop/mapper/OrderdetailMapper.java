@@ -6,4 +6,6 @@ public interface OrderdetailMapper {
     int insert(Orderdetail record);
 
     int insertSelective(Orderdetail record);
+
+    void del(Long orderid);
 }
