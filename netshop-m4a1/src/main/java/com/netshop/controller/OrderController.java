@@ -5,17 +5,15 @@ import com.netshop.pojo.Ordertable;
 import com.netshop.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-public class StoreController {
+@RequestMapping("/order")
+public class OrderController {
     @Resource
     private AddressService addressService;
 
@@ -46,7 +44,7 @@ public class StoreController {
     @Resource
     private ReturntableService returntableService;
 
-    @PostMapping("/store/list")
+    @GetMapping("/orderList")
     public String storeList(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size){
         List<Ordertable> ordertables = ordertableService.list(page,size);
 
@@ -54,14 +52,14 @@ public class StoreController {
         return "list";
     }
 
-    @PostMapping("/store/add")
+    @GetMapping("/addInOrder")
     @ResponseBody
     public boolean storeAdd(@RequestBody Ordertable ordertable){
         ordertableService.add(ordertable);
         return false;
     }
 
-    @PostMapping("/store/del")
+    @GetMapping("/delectOrder")
     @ResponseBody
     public boolean storeDel(@RequestBody Long orderid){
         ordertableService.del(orderid);
@@ -69,8 +67,14 @@ public class StoreController {
         return false;
     }
 
+    @GetMapping("/getOrderbyId")
+    @ResponseBody
+    public Ordertable getById(@RequestBody Long orderid){
+       return null;
+    }
 
-    @PostMapping("/store/update")
+
+    @GetMapping("/updateOrder")
     @ResponseBody
     public boolean storeUpdate(@RequestBody Ordertable ordertable){
         ordertableService.up(ordertable);
@@ -84,6 +88,5 @@ public class StoreController {
     public String upload(@RequestBody MultipartFile file) {
         return null;
     }
-
 
 }

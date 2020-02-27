@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Resource
@@ -46,25 +47,22 @@ public class AdminController {
     private ReturntableService returntableService;
 
 
-    @PostMapping("/admin/list")
+    @GetMapping("/adminList")
     public String adminList(Model model, @RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "10") Integer size){
         List<Administrator> administrators =  administratorService.list(page,size);
         List<Customer> customers = customerService.list();
 
-
-        model.addAttribute("admin",administrators);
-        model.addAttribute("customer",customers);
         return "list";
     }
 
-    @PostMapping("/admin/add")
+    @GetMapping("/addInAdmin")
     @ResponseBody
     public boolean adminAdd(@RequestBody Administrator administrator){
         administratorService.add(administrator);
         return false;
     }
 
-    @PostMapping("/admin/del")
+    @GetMapping("/delectAdmin")
     @ResponseBody
     public boolean adminDel(@RequestBody Integer adminid){
         administratorService.del(adminid);
@@ -72,17 +70,36 @@ public class AdminController {
     }
 
 
-    @PostMapping("/admin/update")
+    @GetMapping("/updateAdmin")
     @ResponseBody
     public boolean adminUpdate(@RequestBody Administrator administrator) {
         administratorService.up(administrator);
         return false;
     }
 
-    @PostMapping("/upload")
+    @GetMapping("/upload")
     @ResponseBody
     public String upload(@RequestBody MultipartFile file){
         return null;
+    }
+
+
+    @GetMapping("/login")
+    public String login(Administrator administrator){
+
+        return null;
+    }
+
+    @GetMapping("/getAdminById")
+    @ResponseBody
+    public Administrator getAdminById(Integer adminid){
+        return null;
+    }
+
+    @GetMapping("/delectMatchAdmin")
+    @ResponseBody
+    public boolean adminDelMany(@RequestBody List<Integer> adminids){
+        return false;
     }
 
 }
